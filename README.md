@@ -28,9 +28,18 @@ AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 Default region name [None]: us-west-2
 Default output format [None]: json
 ```
+ 
 
 ## Create Cluster
 Enter this command
 ```shell
-eksctl create cluster --name test-k8s-cluster --region eu-north-1 --node-type t2.small --nodes 2 --nodegroup-name linux-nodes
+eksctl create cluster --name bahram-k8s --region eu-north-1 --node-type t3.small --nodes 2 --nodegroup-name linux-nodes
+```
+**Error:**  
+Be sure that EC2 instance is available on that region. for example at this time t2.small is not available in eu-north-1 region. 
+
+## Create kubeconfig file automatically
+By default, the resulting configuration file is created at the default kubeconfig path ``(.kube/config)`` in your home directory or merged with an existing kubeconfig file at that location.
+```shell
+aws eks update-kubeconfig --region <region-code> --name <cluster-name>
 ```
